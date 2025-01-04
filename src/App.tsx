@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import Cards, { Character } from "./components/cards/cards"
 import Filters from "./components/filters/filters"
+import Pagination from "./components/pagination/pagination";
+import Search from "./components/search/search";
 
 interface DataApi {
   info: Record<string , any>;
@@ -10,7 +12,8 @@ interface DataApi {
 }
 
 function App() {
-  const [pageNumber] = useState<number>(1);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [search, setSearch] = useState("");
   const [fetchedData, setFetchedData] = useState<DataApi | undefined>(undefined);
   
   let info, results;
@@ -22,7 +25,7 @@ function App() {
   console.log(info);
   
 
-  const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
+  const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
 
   useEffect(()=>{
     (async function(){
@@ -36,6 +39,7 @@ function App() {
   return (
     <div>
       <h1 className="text-center font-semibold my-3 text-2xl">Rick & Morty <span className="font-extrabold">WiKi</span></h1>
+      <Search setSearch={setSearch}/>
       <div className="grid gap-4 grid-cols-12">
         <div className="col-span-1"></div>
         <div className="col-span-3 bg-red-300">
@@ -46,6 +50,7 @@ function App() {
         </div>
         <div className="col-span-1"></div>
       </div>
+      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber}/>
     </div>
   )
 }
