@@ -7,7 +7,6 @@ interface SearchProps {
 const Search = ({setSearch}: SearchProps) => {
     const [inputValue, setInputValue] = useState("")
 
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         const value = e.target.value;
         setInputValue(value)
