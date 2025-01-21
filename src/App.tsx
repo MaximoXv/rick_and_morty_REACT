@@ -14,6 +14,9 @@ interface DataApi {
 function App() {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [genders, setGenders] = useState("");
   const [fetchedData, setFetchedData] = useState<DataApi>();
 
   let info = {} as Record<string, any>;
@@ -25,7 +28,8 @@ function App() {
   console.log(results);
   console.log(info);
 
-  const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
+  const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${genders}&species=${species}`;
+  
 
   useEffect(() => {
     (async function () {
@@ -44,7 +48,7 @@ function App() {
       <div className="grid gap-4 grid-cols-12">
         <div className="col-span-1"></div>
 
-        <Filters />
+        <Filters setStatus={setStatus} setSpecies={setSpecies} setGenders={setGenders} setPageNumber={setPageNumber} />
         <div className="grid gap-2 grid-cols-12 col-span-7">
           <Cards results={results} />
         </div>

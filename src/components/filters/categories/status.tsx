@@ -1,7 +1,12 @@
 
 import FilterButton from "../filter-button";
 
-const Status = () => {
+interface StatusProps {
+  setStatus: (status: string) => void;
+  setPageNumber: (pageNumber: number) => void;
+}
+
+const Status = ({ setStatus, setPageNumber }: StatusProps) => {
   const status = ["alive", "dead", "unknown"];
 
   return (
@@ -12,7 +17,7 @@ const Status = () => {
     </summary>
     <div className=" flex flex-wrap gap-2 p-2 w-full mt-2 ">
         {status.map((statu) => (
-          <FilterButton key={statu} id={`status-${statu}`} name="status" label={statu} value={statu} />
+          <FilterButton task={setStatus} setPageNumber={setPageNumber} key={statu} id={`status-${statu}`} name="status" label={statu} />
         ))}
 
     </div>

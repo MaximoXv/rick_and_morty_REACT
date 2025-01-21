@@ -1,6 +1,11 @@
 import FilterButton from "../filter-button";
 
-const Species = () => {
+interface SpeciesProps {
+  setSpecies: (species: string) => void;
+  setPageNumber: (pageNumber: number) => void;
+}
+
+const Species = ({ setSpecies, setPageNumber }: SpeciesProps) => {
   const species = ["Human",
     "Alien",
     "Humanoid",
@@ -21,7 +26,7 @@ const Species = () => {
     </summary>
     <div className=" flex flex-wrap gap-2 p-2 w-full mt-2">
         {species.map((specie) => (
-          <FilterButton key={specie} id={`species-${specie}`} name="species" label={specie} value={specie} />
+          <FilterButton task={setSpecies} setPageNumber={setPageNumber} key={specie} id={`species-${specie}`} name="species" label={specie} />
         ))}
 
     </div>
