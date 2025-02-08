@@ -40,10 +40,8 @@ interface DataApi {
     }, [api]);
   
     return (
-      <div>
-        <h1 className="text-center font-semibold my-3 text-2xl">
-          Rick & Morty <span className="font-extrabold">WiKi</span>
-        </h1>
+      <div className="mt-3">
+        
         <Search setSearch={setSearch} />
         <div className="grid gap-4 grid-cols-12">
           <div className="col-span-1"></div>
